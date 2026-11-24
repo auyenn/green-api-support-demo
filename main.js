@@ -1,4 +1,4 @@
-import { apiRequest, demoResponses, fileBody, formatResponse, messageBody } from "./green-api.mjs";
+import { apiRequest, demoResponses, fileBody, formatResponse, messageBody } from "./green-api-client.js";
 
 const field = (id) => document.getElementById(id);
 const response = field("response-output");
