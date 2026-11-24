@@ -1,0 +1,279 @@
+:root {
+  color-scheme: light;
+  --page: #f0f4f1;
+  --surface: #ffffff;
+  --ink: #18251e;
+  --muted: #4d6255;
+  --border: #cdd9d0;
+  --green: #14613e;
+  --green-hover: #0d4c30;
+  --green-light: #edf6f0;
+  --focus: #227250;
+  --radius: 7px;
+  --code-font: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.45;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+.workspace {
+  width: min(100%, 1120px);
+  margin-inline: auto;
+  padding: 26px 24px 28px;
+}
+
+.page-header,
+.response-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.page-header {
+  margin-bottom: 19px;
+}
+
+h1, h2, p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.038em;
+}
+
+h1 span {
+  color: var(--green);
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.demo-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.demo-toggle input {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  margin: 0;
+  accent-color: var(--green);
+  cursor: inherit;
+}
+
+.console-layout {
+  display: grid;
+  grid-template-columns: minmax(285px, 0.95fr) minmax(0, 1.45fr);
+  align-items: stretch;
+  gap: 18px;
+}
+
+.console-layout > * {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.group {
+  display: grid;
+  gap: 4px;
+  padding: 12px 20px 14px;
+}
+
+.group + .group {
+  border-top: 1px solid var(--border);
+}
+
+.group label {
+  margin-top: 3px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.hint, .response-status {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.group input,
+.group textarea,
+#response-output {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.group input, .group textarea {
+  font-size: 0.875rem;
+}
+
+.group input {
+  min-height: 34px;
+}
+
+.group textarea {
+  min-height: 52px;
+  resize: vertical;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #607267;
+  opacity: 1;
+}
+
+:where(input, textarea, button, summary):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.account-actions {
+  display: grid;
+  gap: 6px;
+  margin-top: 5px;
+}
+
+.api-options summary {
+  width: fit-content;
+  padding-block: 3px;
+  color: var(--green);
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.api-options label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.method-button, .clear-button {
+  min-height: 36px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.method-button {
+  padding: 6px 10px;
+  font-family: var(--code-font);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.secondary {
+  border-color: #a8c8b3;
+  background: var(--green-light);
+  color: var(--green);
+}
+
+.secondary:hover:not(:disabled) {
+  border-color: var(--green);
+  background: #e1efe6;
+}
+
+.primary {
+  margin-top: 5px;
+  background: var(--green);
+  color: white;
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--green-hover);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.response-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 14px 17px 15px;
+}
+
+.clear-button {
+  padding-inline: 10px;
+  background: transparent;
+  color: var(--green);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.clear-button:hover:not(:disabled) {
+  background: var(--green-light);
+}
+
+#response-output {
+  flex: 1;
+  min-height: 250px;
+  padding: 15px;
+  resize: vertical;
+  background: #f7faf8;
+  font-family: var(--code-font);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.response-status {
+  overflow-wrap: anywhere;
+}
+
+.response-status[data-kind="success"] {
+  color: var(--green);
+}
+
+.response-status[data-kind="error"] {
+  color: #972e2a;
+}
+
+@media (max-width: 740px) {
+  .workspace {
+    padding: 22px 14px;
+  }
+
+  .console-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .page-header {
+    flex-wrap: wrap;
+    gap: 5px 14px;
+    margin-bottom: 12px;
+  }
+
+  .group {
+    padding-inline: 15px;
+  }
+}

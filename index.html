@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://greenapi.com https://*.greenapi.com https://green-api.com https://*.green-api.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Проверка GREEN-API</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <main class="workspace">
+    <header class="page-header">
+      <h1>Проверка <span>GREEN-API</span></h1>
+      <label class="demo-toggle">
+        <input id="demo-mode" type="checkbox" aria-describedby="demo-hint">
+        <span>Демо без отправки</span>
+      </label>
+    </header>
+
+    <div class="console-layout">
+      <div class="request-panel">
+        <section id="credentials" class="group" aria-labelledby="credentials-title">
+          <h2 id="credentials-title">Подключение</h2>
+          <p id="demo-hint" class="hint">Для демо ID и токен не нужны.</p>
+
+          <label for="instance-id">idInstance</label>
+          <input id="instance-id" type="text" inputmode="numeric" autocomplete="off" spellcheck="false">
+
+          <label for="api-token">ApiTokenInstance</label>
+          <input id="api-token" type="password" autocomplete="off" spellcheck="false">
+
+          <div class="account-actions">
+            <button id="get-settings" type="button" class="method-button secondary">getSettings</button>
+            <button id="get-state" type="button" class="method-button secondary">getStateInstance</button>
+          </div>
+
+          <details class="api-options">
+            <summary>Другой адрес API</summary>
+            <label for="api-url">apiUrl</label>
+            <input id="api-url" type="url" placeholder="Адрес из личного кабинета" autocomplete="off" spellcheck="false">
+          </details>
+        </section>
+
+        <form id="message-form" class="group" aria-labelledby="message-title" novalidate>
+          <h2 id="message-title">Сообщение</h2>
+
+          <label for="message-chat">Номер или ID чата</label>
+          <input id="message-chat" type="text" placeholder="Например, 77771234567" autocomplete="off" spellcheck="false">
+
+          <label for="message-text">Текст сообщения</label>
+          <textarea id="message-text" rows="2" placeholder="Привет!" autocomplete="off"></textarea>
+
+          <button type="submit" class="method-button primary">sendMessage</button>
+        </form>
+
+        <form id="file-form" class="group" aria-labelledby="file-title" novalidate>
+          <h2 id="file-title">Файл по ссылке</h2>
+
+          <label for="file-chat">Номер или ID чата</label>
+          <input id="file-chat" type="text" placeholder="Например, 77771234567" autocomplete="off" spellcheck="false">
+
+          <label for="file-url">URL файла</label>
+          <input id="file-url" type="url" placeholder="https://example.com/photo.png" autocomplete="off" spellcheck="false">
+
+          <details class="api-options">
+            <summary>Указать имя файла</summary>
+            <label for="file-name">Имя файла с расширением</label>
+            <input id="file-name" type="text" placeholder="photo.png" autocomplete="off" spellcheck="false">
+          </details>
+
+          <button type="submit" class="method-button primary">sendFileByUrl</button>
+        </form>
+      </div>
+
+      <section class="response-panel" aria-labelledby="response-title">
+        <header class="response-header">
+          <h2 id="response-title">Ответ</h2>
+          <button id="clear-response" type="button" class="clear-button">Очистить</button>
+        </header>
+        <p id="response-status" class="response-status" role="status">Ожидание запроса</p>
+        <textarea id="response-output" rows="12" aria-labelledby="response-title" aria-describedby="response-status" readonly spellcheck="false" placeholder="Здесь появится ответ API"></textarea>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
